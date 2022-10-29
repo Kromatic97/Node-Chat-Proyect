@@ -9,6 +9,7 @@ const config = require ('./config')
 const userRouter = require ('./users/users.router')
 const authRouter = require('./auth/auth.router')
 const conversationRouter = require('./conversations/conversations.router')
+const messageRouter = require('./messages/messages.router')
 const initModels = require('./models/initModels')
 
 
@@ -47,8 +48,9 @@ app.get('/', (req, res) => {
 //!manejo de rutas
 app.use('/api/v1/users', userRouter)
 app.use('/api/v1/auth', authRouter)
-
+app.use('/api/v1/messages', messageRouter)
 app.use('/api/v1/conversations', conversationRouter)
+
 
 
 

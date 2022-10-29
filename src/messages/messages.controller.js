@@ -18,7 +18,7 @@ const getMessageById = async (id) =>{
 const createMessage = async (data) => {
     const newMessage = await Messages.create({
         id:uuid.v4(),
-        userId:data.userId,
+        userId:data.userId,//este viene del token
         conversationId:data.conversationId,
         message:data.message
     })
