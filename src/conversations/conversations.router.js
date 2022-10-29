@@ -9,3 +9,5 @@ router.route('/') //? /conversations
 router.get('/:id', conversationsControllers.getConversationById)
 router.delete('/:id',conversationsControllers.deleteConversation)
 router.patch('/:id', conversationsControllers.patchConversation)
+
+module.exports = router
