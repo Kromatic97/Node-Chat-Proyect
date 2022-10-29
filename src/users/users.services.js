@@ -26,11 +26,11 @@ const getUserById = (req, res) => {
 
 //create USER//
 const registerUser = (req, res) => {
-    const  {firstName, lastName, email, password, phone, birthday, gender, country } = req.body;
-    if (firstName && lastName && email && password  && phone && birthday) {
+    const  {firstName, lastName, email, password, phone, profileImage } = req.body;
+    if (firstName && lastName && email && password  && phone && profileImage) {
             //se ejecuta el controller
                         usersControllers.createUser({
-                            firstName, lastName, email, password, phone, birthday, gender, country  
+                            firstName, lastName, email, password, phone, profileImage  
                         })
             
                         .then(data => {
@@ -47,7 +47,7 @@ const registerUser = (req, res) => {
             email:'example@gmail.com',
             password:'string',
             phone: '+555321321',
-            birthday:'YYYY/MM/DD'
+            profileImage:'profileImage'
         
         }})
     

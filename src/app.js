@@ -8,8 +8,8 @@ const config = require ('./config')
 //ROUTES
 const userRouter = require ('./users/users.router')
 const authRouter = require('./auth/auth.router')
-const initModels = require('./models/initModels')
 const conversationRouter = require('./conversations/conversations.router')
+const initModels = require('./models/initModels')
 
 
 //Initial config
