@@ -9,7 +9,7 @@ require('../middlewares/auth.middleware')(passport)
 
 router.route('/') //? /messages
 .get(passport.authenticate('jwt', {session:false}), 
-messageServices.getAllConversations
+messageServices.getAllMessages
 )
 
 .post(
