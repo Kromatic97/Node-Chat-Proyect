@@ -2,12 +2,37 @@ const router = require('express').Router()
 
 const conversationsControllers = require ('./conversations.services')
 
-router.route('/') //? /conversations
-.get(conversationsControllers.getAllConversations)
-.post(conversationsControllers.postConversation)
+const passport = require('passport')
+const adminValidate = require('../middlewares/role.middleware')
+const conversationServices = require('./conversations.services')
 
-router.get('/:id', conversationsControllers.getConversationById)
-router.delete('/:id',conversationsControllers.deleteConversation)
-router.patch('/:id', conversationsControllers.patchConversation)
+require('../middlewares/auth.middleware')(passport)
+
+router.route('/') //? /conversations
+.get(passport.authenticate('jwt', {session:false}), 
+conversationServices.getAllConversations
+)
+
+.post(
+    passport.authenticate('jwt', {session:false}), 
+    conversationServices.postConversation
+    )
+
+
+router.route('/:id')
+    .get(conversationServices.getConversationById)
+    
+    .patch(
+        passport.authenticate('jwt', {session: false}),
+        adminValidate,
+        conversationServices.patchConversation
+    )
+    .delete(
+        passport.authenticate('jwt', {session: false}),
+        adminValidate,
+        conversationServices.deleteConversation
+    )
+
+router
 
 module.exports = router

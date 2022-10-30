@@ -1,5 +1,9 @@
 
 //? estrategia: Diferentes maneras de hacer un login(Con facebook, google, JWT, Github...)
+//* . Revisa si existe en token
+//* .Verificar si el token pertenece a un usuario valido
+//* .Modificar el req y agregar req.user con la informacion desencriptada del token
+
 
 const { jwtSecret } = require('../config');
 const { getUserById } = require('../users/users.controllers');
