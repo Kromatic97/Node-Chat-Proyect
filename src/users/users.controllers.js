@@ -60,8 +60,8 @@ const getUserByEmail = async(email) => {
     //? SELECT * FROM users where email = 'sahid.kick@academlo.com'//
     const data = await Users.findOne({
         where: {
-            email: email
-            // status: 'active'
+            email: email,
+            status: 'active'
         }
     })
     return data
