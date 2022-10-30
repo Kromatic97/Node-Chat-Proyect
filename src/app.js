@@ -1,19 +1,21 @@
-//Dependencias
+//?Dependencies
 
 const express = require ('express')
 const db =  require ('./utils/database')
-//FILES
+
+//?FILES
 const config = require ('./config')
 
-//ROUTES
+//?ROUTES
 const userRouter = require ('./users/users.router')
 const authRouter = require('./auth/auth.router')
+
 const conversationRouter = require('./conversations/conversations.router')
 const messageRouter = require('./messages/messages.router')
 const initModels = require('./models/initModels')
 
 
-//Initial config
+//?Initial config
 const app = express()
 
 app.use(express.json())
@@ -25,7 +27,6 @@ db.authenticate()
 .catch(err => {
     console.log(err)
 })
-
 
 db.sync()
 .then(() => {
@@ -48,6 +49,7 @@ app.get('/', (req, res) => {
 //!manejo de rutas
 app.use('/api/v1/users', userRouter)
 app.use('/api/v1/auth', authRouter)
+
 app.use('/api/v1/messages', messageRouter)
 app.use('/api/v1/conversations', conversationRouter)
 

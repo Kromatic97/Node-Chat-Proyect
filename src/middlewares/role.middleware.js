@@ -1,13 +1,27 @@
+// const adminValidate = (req, res, next) => {
+//     const role = req.user.role
+
+//     if(role === 'admin'){
+//         next()
+//     } else {
+
+//         return res.status(401).json({message:'Access Denied!'})
+//     }
+
+// }
+
+// module.exports = adminValidate
+
+
 const adminValidate = (req, res, next) => {
     const role = req.user.role
 
     if(role === 'admin'){
         next()
-    } else {
-
-        return res.status(401).json({message:'Access Denied!'})
+    }else {
+        res.status(401).json({message: 'Access Denied!'})
     }
-
 }
+
 
 module.exports = adminValidate

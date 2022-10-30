@@ -1,13 +1,9 @@
-//dependencies
-const { where } = require('sequelize')
-const uuid = require ('uuid')
-
-
-const Users = require ('../models/users.models')
+const uuid = require('uuid')
+const Users = require('../models/users.models')
 const { hashPassword } = require('../utils/crypto')
 
-const getAllUsers =  async () => {
-    const data =  await Users.findAll({
+const getAllUsers = async () => {
+    const data = await Users.findAll({
         where: {
             status: 'active'
         }
@@ -17,52 +13,55 @@ const getAllUsers =  async () => {
 
 const getUserById = async (id) => {
     const data = await Users.findOne({
-        where:{
-            id:id,
+        where: {
+            id: id,
             status: 'active'
         }
     })
     return data
 }
 
-const createUser = async (data) => {
-    const newUser = await Users.create ({
-        id: uuid.v4(),
-        firstName:data.firstName,
-        lastName:data.lastName,
-        email:data.email,
-        password:hashPassword(data.password),
-        phone:data.phone,
-        profileImage:data.profileImage
 
+const createUser = async (data) => {
+    const newUser = await Users.create({
+        id: uuid.v4(),
+        firstName: data.firstName,
+        lastName: data.lastName,
+        email: data.email,
+        password: hashPassword(data.password),
+        profileImage:data.profileImage,
+        phone: data.phone
     })
     return newUser
 }
 
 const updateUser = async (id, data) => {
     const result = await Users.update(data, {
-        where:{
-            id:id
+        where: {
+            id
         }
     })
     return result
 }
 
-const deleteUser =  async (id) => {
+const deleteUser = async (id) => {
     const data = await Users.destroy({
         where: {
-            id:id
+            id
         }
     })
     return data
 }
 
-const getUserByEmail = async (email) =>{
+//? Un servidor contiene la API
+//? Otro servidor contiene la Base de Datos
+
+const getUserByEmail = async(email) => {
+    //? SELECT * FROM users where email = 'sahid.kick@academlo.com'//
     const data = await Users.findOne({
         where: {
-            email: email,
-            status: 'active'
-
+            email: email
+            // status: 'active'
         }
     })
     return data

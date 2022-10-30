@@ -2,12 +2,12 @@ const router = require('express').Router()
 const passport = require('passport')
 
 const messageServices = require ('./messages.services')
-require('../middlewares/auth.middlewares')(passport)
+require('../middlewares/auth.middleware')(passport)
 
 
 
 router.route('/') //? /messages
-// .get()
+.get(messageServices.getAllMessages)
 .post(
     passport.authenticate('jwt', {session:false}), 
     messageServices.createMessage

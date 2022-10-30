@@ -19,7 +19,7 @@ const login = (req, res) => {
                 res.status(200).json({message:'Correct Credential', token})
                 
             }else{
-                res.status(401).json({message:'invalid Credential'})
+                res.status(401).json({message:'Invalid Credential'})
             }
         })
         .catch(error => {

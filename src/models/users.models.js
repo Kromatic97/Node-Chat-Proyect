@@ -1,49 +1,70 @@
 const db = require('../utils/database');
-const { DataTypes } = require('sequelize')
 
-const Users = db.define('users', {
-    id : {
-        primaryKey: true,
-        type: DataTypes.UUID,
-        allowNull: false,
-        },
+const { DataTypes } = require("sequelize");
 
-        firstName:{
-        type: DataTypes.STRING,
-        allowNull: false,
-        field: 'first_name',
-    },
-        
-        lastName:{
-        type: DataTypes.STRING,
-        allowNull: false,
-        field: 'last_name',
-        },
-        
-        email:{
-        type: DataTypes.STRING,
-        allowNull: false, 
-        unique:true,
-        validate:{
-            isEmail:true
-        }
-        },
+const Users = db.define("users", {
+  id: {
+    type: DataTypes.UUID,
+    primaryKey: true,
+    allowNull: false,
+  },
 
-        password:{
-            type:DataTypes.STRING,
-            allowNull:false
-        },
+  firstName: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    field: "first_name",
+  },
 
-        phone:{
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique:true
-        },
+  lastName: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    field: "last_name",
+  },
 
-        profileImage:{
-        type: DataTypes.STRING,
-        field:'profile_image'
+  email: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true,
+    validate: {
+        isEmail: true
+    }
+  },
 
-    },
-}); 
-  module.exports = Users
+  password: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+
+  profileImage: {
+    type: DataTypes.STRING,
+    field: 'profile_image',
+  },
+
+  phone: {
+    type: DataTypes.STRING, // +52 
+    allowNull: false,
+    unique: true
+  },
+
+  role: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    defaultValue: 'normal'
+  },
+
+  status: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    defaultValue: 'active'
+  },
+
+    isVerified: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+    defaultValue: false,
+    field: 'is_verified'
+  },
+
+});
+
+module.exports = Users
