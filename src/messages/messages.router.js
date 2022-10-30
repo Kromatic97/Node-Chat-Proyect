@@ -8,14 +8,27 @@ require('../middlewares/auth.middleware')(passport)
 
 
 router.route('/') //? /messages
-.get(messageServices.getAllMessages)
+.get(passport.authenticate('jwt', {session:false}), 
+messageServices.getAllConversations
+)
+
 .post(
     passport.authenticate('jwt', {session:false}), 
     messageServices.createMessage
     )
 
-// router.get('/:id', messageControllers.getMessageById)
-// router.delete('/:id',messageControllers.deleteMessage)
+
+router.route('/:id')
+.get(
+    passport.authenticate('jwt', {session: false}),
+    adminValidate,
+    messageServices.getMessageById
+)
+    .delete(
+        passport.authenticate('jwt', {session: false}),
+        adminValidate,
+        messageServices.deleteMessage
+    )
 
 
 module.exports = router
