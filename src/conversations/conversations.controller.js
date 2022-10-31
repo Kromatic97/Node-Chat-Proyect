@@ -48,7 +48,7 @@ const editConversation = async (id, data) => {
 const deleteConversation = async (id) => {
     const data = await Conversations.destroy({
         where: {
-            id:id
+            id
         }
     })
     return data

@@ -13,11 +13,26 @@
 
   /users
     -/me
-    -/me/conversations (todas las conversasiones creado por el usuario) Create
-    -/me/conversarions/:id (para obtener una conversacion en especifico) Delete y Update
 
-  /conversations
+    -/me/conversations 
+
+    (todas las conversasiones creado por el usuario)
+     Create
+
+  -/me/conversarions/:id 
+
+  (para obtener una conversacion en especifico) 
+  
+  Delete y Update
+
+  /messages
 
     -/:id
+    -/:id/messages
+    -/:id/messages/id
+
+/conversations
+ -/:id
+    -/:id/conversations
 
 

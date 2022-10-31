@@ -32,9 +32,10 @@ const getConversationById = (req, res) => {
 
 //Nueva Conversacion//
 const postConversation = (req, res) => {
-    const data = req.body;
-    if(data.title && data.imageUrl && data.userId){
-        conversationsControllers.createConversation(data)
+    const userId= req.user.id
+    const {title, imageUrl} = req.body;
+    if(title, imageUrl){
+        conversationsControllers.createConversation({title, imageUrl, userId})
         .then( response => {
             res.status(201).json(response)
         })
@@ -42,9 +43,15 @@ const postConversation = (req, res) => {
             res.status(400).json({message:err.message})
         })
     }else{
-        res.status(400).json({message:'Missin data'})
+        res.status(400).json({message:'Missin data', fields:{
+            title:'string',
+            imageUrl:'string',
+            userId:'uuid'
+        }})
     }
 };
+
+
 
 //Edit Conversacion
 const patchConversation = (req, res) => {
@@ -65,7 +72,7 @@ const patchConversation = (req, res) => {
         })
 }
 //Delete conversacion
-const  deleteConversation = (req, res) => {
+const deleteConversation = (req, res) => {
     const id = req.params.id
     conversationsControllers.deleteConversation(id)
     .then((response) => {

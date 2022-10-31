@@ -13,23 +13,23 @@ const Conversations = db.define('conversations', {
     title:{
         type: DataTypes.STRING,
         allowNull: false,
-        },
+    },
 
-        imageUrl:{
-            type: DataTypes.STRING,
-            field:'image_url'
-        },
+    imageUrl:{
+        type: DataTypes.STRING,
+        field:'image_url'
+    },
 
-        //clave foranea de USERS
-        userId:{
-            type: DataTypes.UUID,
-            allowNull: false,
-            field:'user_id',
-            references: {
-                key:'id', 
-                model:Users
-            }
-        },
+    //clave foranea de USERS
+     userId:{
+        type: DataTypes.UUID,
+        allowNull: false,
+        field:'user_id',
+        references: {
+            key:'id', 
+            model:Users
+        }
+    },
 });
 
 module.exports = Conversations
