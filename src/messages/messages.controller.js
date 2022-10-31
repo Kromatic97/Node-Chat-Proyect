@@ -40,8 +40,20 @@ const createMessage = async (data) => {
     return newMessage
 }
 
+const deleteMessage = async (id) => {
+    const data = await Messages.destroy({
+        where: {
+            id
+        }
+    })
+    return data
+}
+
+
+
 module.exports = {
     getAllMessages,
     getMessageById,
-    createMessage
+    createMessage,
+    deleteMessage
 }

@@ -21,12 +21,12 @@ messageServices.getAllMessages
 router.route('/:id')
 .get(
     passport.authenticate('jwt', {session: false}),
-    adminValidate,
+    // adminValidate,
     messageServices.getMessageById
 )
     .delete(
         passport.authenticate('jwt', {session: false}),
-        adminValidate,
+        // adminValidate,
         messageServices.deleteMessage
     )
 
